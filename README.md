@@ -8,7 +8,7 @@ PowerScore was developed by The Astromechs - FTC Team 3409.
 Contact us: http://www.kcastromechs.org or on twitter at @KCAstromechs
 
 ## Usage
-... A few sample command line usages is coming Soon ...
+`python powerscore_display.py -k "API KEY" url1 [url2]`
 
 ## Installation
 *Python 3 is highly recommended over Python 2*
@@ -26,4 +26,4 @@ Version 4.0 (Initial public release)
  * Supported scoring data includes
     - The FTC Scoring System web pages
     - ftcscores.com
-    - theorangealliance.net (Note, at the current time theorangealliance has some data challenges)
+    - theorangealliance.net (~~Note, at the current time theorangealliance has some data challenges~~ Now fixed)
