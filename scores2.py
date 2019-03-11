@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 import sys
 import json
 import os
+import time
 
 event = {}
 matches = {}
@@ -97,8 +98,10 @@ class Window(QMainWindow):
                     event = json.loads(f.read())
             except json.decoder.JSONDecodeError as error:
                 self.errorMessage(error, "File selected is not a valid json file.")
+                return
             except FileNotFoundError as error:
                 self.errorMessage(error, "File not found.")
+                return
 
             try:
                 f = open(os.path.join(fname, "matches.json"), 'r')
@@ -106,8 +109,10 @@ class Window(QMainWindow):
                     matches = json.loads(f.read())
             except json.decoder.JSONDecodeError as error:
                 self.errorMessage(error, "File selected is not a valid json file.")
+                return
             except FileNotFoundError as error:
                 self.errorMessage(error, "File not found.")
+                return
 
             try:
                 f = open(os.path.join(fname, "teams.json"), 'r')
@@ -115,8 +120,10 @@ class Window(QMainWindow):
                     teams = json.loads(f.read())
             except json.decoder.JSONDecodeError as error:
                 self.errorMessage(error, "File selected is not a valid json file.")
+                return
             except FileNotFoundError as error:
                 self.errorMessage(error, "File not found.")
+                return
 
             if matches != None:
                 self.matchIds = [match for match in matches]
@@ -129,7 +136,7 @@ class Window(QMainWindow):
             self.statusLabel.setText('Ready')
 
     def errorMessage(self, error, message):
-        self.statusLabel.setText("Error!")
+        self.statusLabel.setText("Error! - Ready")
         self.errorDialog = QMessageBox()
         self.errorDialog.setIcon(QMessageBox.Critical)
         self.errorDialog.setText(str(message))
@@ -147,9 +154,11 @@ class Window(QMainWindow):
                 e.accept()
             except AttributeError:
                 qApp.quit()
-
         else:
-            e.ignore()
+            try:
+                e.ignore()
+            except AttributeError:
+                pass
 
 
 if __name__ == '__main__':
