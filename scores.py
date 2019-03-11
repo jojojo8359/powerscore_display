@@ -34,15 +34,10 @@ class Main(tk.Frame):
         self.blue2endhang = tk.Checkbutton(self, var=self.blue2endhangstate, bd=0, onvalue=50, offvalue=0, bg="#335650", highlightthickness=0, activebackground="#427068", padx=1, pady=1, command=self.updatebluescore)
         self.blue2endhang.place(x=367, y=80)
 
-        self.bluescore = tk.StringVar()
-        self.bluescore.set("0")
-        self.bluescorelabel = tk.Label(self, textvariable=self.bluescore, font=("Arial", 30, "bold"), width=3, bg="#0b24fb", fg="white")
-        self.bluescorelabel.place(x=324, y=472)
-
-        self.redscore = tk.StringVar()
-        self.redscore.set("0")
-        self.redscorelabel = tk.Label(self, textvariable=self.redscore, font=("Arial", 30, "bold"), width=3, bg="#fc0d1b", fg="white")
-        self.redscorelabel.place(x=570, y=472)
+        self.blue1silver1 = tk.IntVar()
+        self.blue1silver1.set(0)
+        self.blue1silver1box = tk.Checkbutton(self, var=self.blue1silver1, bd=0, onvalue=1, offvalue=0, highlightthickness=0, padx=0, pady=0)
+        self.blue1silver1box.place(x=100, y=100)
 
         self.bluesilverminerals = tk.StringVar()
         self.bluesilverminerals.set("0")
@@ -58,6 +53,16 @@ class Main(tk.Frame):
         self.bluedepotminerals.set("0")
         self.bluedepotmineralsspinbox = tk.Spinbox(self, from_=0, to=100, width=2, bg="#335650", bd=0, state="readonly", readonlybackground="#335650", relief="solid", highlightthickness=0, font=("Arial", 16, "bold"), fg="white", textvariable=self.bluedepotminerals, command=self.updatebluescore)
         self.bluedepotmineralsspinbox.place(x=366, y=340)
+
+        self.bluescore = tk.StringVar()
+        self.bluescore.set("0")
+        self.bluescorelabel = tk.Label(self, textvariable=self.bluescore, font=("Arial", 30, "bold"), width=3, bg="#0b24fb", fg="white")
+        self.bluescorelabel.place(x=324, y=472)
+
+        self.redscore = tk.StringVar()
+        self.redscore.set("0")
+        self.redscorelabel = tk.Label(self, textvariable=self.redscore, font=("Arial", 30, "bold"), width=3, bg="#fc0d1b", fg="white")
+        self.redscorelabel.place(x=570, y=472)
 
     def updatebluescore(self):
         #print(str(self.bluesilverminerals.get()) + " " + str(type(self.bluesilverminerals.get())))
