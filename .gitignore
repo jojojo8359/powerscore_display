@@ -108,3 +108,4 @@ ENV/
 .idea/inspectionProfiles/Project_Default.xml
 *.py___jb_tmp___
 .idea/codeStyles/codeStyleConfig.xml
+.idea/dictionaries/joel.xml
