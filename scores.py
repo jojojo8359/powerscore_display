@@ -36,8 +36,59 @@ class Main(tk.Frame):
 
         self.blue1silver1 = tk.IntVar()
         self.blue1silver1.set(0)
-        self.blue1silver1box = tk.Checkbutton(self, var=self.blue1silver1, bd=0, onvalue=1, offvalue=0, highlightthickness=0, padx=0, pady=0)
-        self.blue1silver1box.place(x=100, y=100)
+        self.blue1silver1box = tk.Checkbutton(self, var=self.blue1silver1, bd=0, onvalue=1, offvalue=0, bg="white", highlightthickness=0, padx=0, pady=0, command=self.updatebluescore)
+        self.blue1silver1box.toggle()
+        self.blue1silver1box.place(x=126, y=123)
+
+        self.blue1silver2 = tk.IntVar()
+        self.blue1silver2.set(0)
+        self.blue1silver2box = tk.Checkbutton(self, var=self.blue1silver2, bd=0, onvalue=1, offvalue=0, bg="white", highlightthickness=0, padx=0, pady=0, command=self.updatebluescore)
+        self.blue1silver2box.toggle()
+        self.blue1silver2box.place(x=188, y=123)
+
+        self.blue1gold = tk.IntVar()
+        self.blue1gold.set(0)
+        self.blue1goldbox = tk.Checkbutton(self, var=self.blue1gold, bd=0, onvalue=1, offvalue=0, bg="gold", highlightthickness=0, activebackground="#dbb800", padx=0, pady=0, command=self.updatebluescore)
+        self.blue1goldbox.toggle()
+        self.blue1goldbox.place(x=158, y=123)
+
+        self.blue1flag = tk.IntVar()
+        self.blue1flag.set(0)
+        self.blue1flagbox = tk.Checkbutton(self, var=self.blue1flag, bd=0, onvalue=15, offvalue=0, bg="#335650", highlightthickness=0, activebackground="#427068", padx=5, pady=5, command=self.updatebluescore)
+        self.blue1flagbox.place(x=152, y=230)
+
+        self.blue1parkauto = tk.IntVar()
+        self.blue1parkauto.set(0)
+        self.blue1parkautobox = tk.Checkbutton(self, var=self.blue1parkauto, bd=0, onvalue=10, offvalue=0, bg="#335650", highlightthickness=0, activebackground="#427068", padx=0, pady=0, command=self.updatebluescore)
+        self.blue1parkautobox.place(x=90, y=280)
+
+        self.blue2parkauto = tk.IntVar()
+        self.blue2parkauto.set(0)
+        self.blue2parkautobox = tk.Checkbutton(self, var=self.blue2parkauto, bd=0, onvalue=10, offvalue=0, bg="#335650", highlightthickness=0, activebackground="#427068", padx=0, pady=0, command=self.updatebluescore)
+        self.blue2parkautobox.place(x=196, y=280)
+
+        self.blue2silver1 = tk.IntVar()
+        self.blue2silver1.set(0)
+        self.blue2silver1box = tk.Checkbutton(self, var=self.blue2silver1, bd=0, onvalue=1, offvalue=0, bg="white", highlightthickness=0, padx=0, pady=0, command=self.updatebluescore)
+        self.blue2silver1box.toggle()
+        self.blue2silver1box.place(x=313, y=123)
+
+        self.blue2silver2 = tk.IntVar()
+        self.blue2silver2.set(0)
+        self.blue2silver2box = tk.Checkbutton(self, var=self.blue2silver2, bd=0, onvalue=1, offvalue=0, bg="white", highlightthickness=0, padx=0, pady=0, command=self.updatebluescore)
+        self.blue2silver2box.toggle()
+        self.blue2silver2box.place(x=374, y=123)
+
+        self.blue2gold = tk.IntVar()
+        self.blue2gold.set(0)
+        self.blue2goldbox = tk.Checkbutton(self, var=self.blue2gold, bd=0, onvalue=1, offvalue=0, bg="gold", highlightthickness=0, activebackground="#dbb800", padx=0, pady=0, command=self.updatebluescore)
+        self.blue2goldbox.toggle()
+        self.blue2goldbox.place(x=344, y=123)
+
+        self.blue2flag = tk.IntVar()
+        self.blue2flag.set(0)
+        self.blue2flagbox = tk.Checkbutton(self, var=self.blue2flag, bd=0, onvalue=15, offvalue=0, bg="#335650", highlightthickness=0, activebackground="#427068", padx=5, pady=5, command=self.updatebluescore)
+        self.blue2flagbox.place(x=339, y=230)
 
         self.bluesilverminerals = tk.StringVar()
         self.bluesilverminerals.set("0")
@@ -65,8 +116,10 @@ class Main(tk.Frame):
         self.redscorelabel.place(x=570, y=472)
 
     def updatebluescore(self):
-        #print(str(self.bluesilverminerals.get()) + " " + str(type(self.bluesilverminerals.get())))
-        self.bluescore.set(str(self.blue1autolandstate.get() + self.blue2autolandstate.get() + self.blue1endhangstate.get() + self.blue2endhangstate.get() + (int(self.bluesilverminerals.get()) * 5) + (int(self.bluegoldminerals.get()) * 5) + (int(self.bluedepotminerals.get()) * 2)))
+        self.bluescore.set(str(self.blue1autolandstate.get() + self.blue2autolandstate.get() + self.blue1endhangstate.get() + self.blue2endhangstate.get() + (int(self.bluesilverminerals.get()) * 5) + \
+                               (int(self.bluegoldminerals.get()) * 5) + (int(self.bluedepotminerals.get()) * 2) + (25 if (self.blue1gold.get() == 0 and self.blue1silver1.get() == 1 and self.blue1silver2.get() == 1) else 0)\
+                               + self.blue1flag.get() + self.blue1parkauto.get() + self.blue2parkauto.get() + (25 if (self.blue2gold.get() == 0 and self.blue2silver1.get() == 1 and self.blue2silver2.get() == 1) else 0)\
+                           + self.blue2flag.get()))
 
 
 class MainApplication(tk.Frame):
