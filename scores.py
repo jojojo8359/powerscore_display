@@ -90,6 +90,26 @@ class Main(tk.Frame):
         self.blue2flagbox = tk.Checkbutton(self, var=self.blue2flag, bd=0, onvalue=15, offvalue=0, bg="#335650", highlightthickness=0, activebackground="#427068", padx=5, pady=5, command=self.updatebluescore)
         self.blue2flagbox.place(x=339, y=230)
 
+        self.blue1parkendgamecomplete = tk.IntVar()
+        self.blue1parkendgamecomplete.set(0)
+        self.blue1parkendgamecompletebox = tk.Checkbutton(self, var=self.blue1parkendgamecomplete, bd=0, onvalue=25, offvalue=0, bg="#335650", highlightthickness=0, activebackground="#427068", padx=0, pady=0, command=self.updatebluescore)
+        self.blue1parkendgamecompletebox.place(x=303, y=280)
+
+        self.blue2parkendgamecomplete = tk.IntVar()
+        self.blue2parkendgamecomplete.set(0)
+        self.blue2parkendgamecompletebox = tk.Checkbutton(self, var=self.blue2parkendgamecomplete, bd=0, onvalue=25, offvalue=0, bg="#335650", highlightthickness=0, activebackground="#427068", padx=0, pady=0, command=self.updatebluescore)
+        self.blue2parkendgamecompletebox.place(x=409, y=280)
+
+        self.blue1parkendgamepartial = tk.IntVar()
+        self.blue1parkendgamepartial.set(0)
+        self.blue1parkendgamepartialbox = tk.Checkbutton(self, var=self.blue1parkendgamepartial, bd=0, onvalue=15, offvalue=0, bg="#335650", highlightthickness=0, activebackground="#427068", padx=0, pady=0, command=self.updatebluescore)
+        self.blue1parkendgamepartialbox.place(x=263, y=280)
+
+        self.blue2parkendgamepartial = tk.IntVar()
+        self.blue2parkendgamepartial.set(0)
+        self.blue2parkendgamepartialbox = tk.Checkbutton(self, var=self.blue2parkendgamepartial, bd=0, onvalue=15, offvalue=0, bg="#335650", highlightthickness=0, activebackground="#427068", padx=0, pady=0, command=self.updatebluescore)
+        self.blue2parkendgamepartialbox.place(x=369, y=280)
+
         self.bluesilverminerals = tk.StringVar()
         self.bluesilverminerals.set("0")
         self.bluesilvermineralsspinbox = tk.Spinbox(self, from_=0, to=100, width=2, bg="#335650", bd=0, state="readonly", readonlybackground="#335650", relief="solid", highlightthickness=0, font=("Arial", 16, "bold"), fg="white", textvariable=self.bluesilverminerals, command=self.updatebluescore)
@@ -115,12 +135,38 @@ class Main(tk.Frame):
         self.redscorelabel = tk.Label(self, textvariable=self.redscore, font=("Arial", 30, "bold"), width=3, bg="#fc0d1b", fg="white")
         self.redscorelabel.place(x=570, y=472)
 
+        self.resetbutton = tk.Button(self, text='Reset', command=self.reset, highlightthickness=0)
+        self.resetbutton.place(x=0, y=510)
+
     def updatebluescore(self):
         self.bluescore.set(str(self.blue1autolandstate.get() + self.blue2autolandstate.get() + self.blue1endhangstate.get() + self.blue2endhangstate.get() + (int(self.bluesilverminerals.get()) * 5) + \
                                (int(self.bluegoldminerals.get()) * 5) + (int(self.bluedepotminerals.get()) * 2) + (25 if (self.blue1gold.get() == 0 and self.blue1silver1.get() == 1 and self.blue1silver2.get() == 1) else 0)\
                                + self.blue1flag.get() + self.blue1parkauto.get() + self.blue2parkauto.get() + (25 if (self.blue2gold.get() == 0 and self.blue2silver1.get() == 1 and self.blue2silver2.get() == 1) else 0)\
-                           + self.blue2flag.get()))
+                           + self.blue2flag.get() + self.blue1parkendgamecomplete.get() + self.blue2parkendgamecomplete.get() + self.blue1parkendgamepartial.get() + self.blue2parkendgamepartial.get()))
 
+    def reset(self):
+        self.blue1autolandstate.set(0)
+        self.blue2autolandstate.set(0)
+        self.blue1endhangstate.set(0)
+        self.blue2endhangstate.set(0)
+        self.bluesilverminerals.set(0)
+        self.bluegoldminerals.set(0)
+        self.bluedepotminerals.set(0)
+        self.blue1gold.set(1)
+        self.blue1silver1.set(1)
+        self.blue1silver2.set(1)
+        self.blue1flag.set(0)
+        self.blue1parkauto.set(0)
+        self.blue2parkauto.set(0)
+        self.blue2gold.set(1)
+        self.blue2silver1.set(1)
+        self.blue2silver2.set(1)
+        self.blue2flag.set(0)
+        self.blue1parkendgamecomplete.set(0)
+        self.blue2parkendgamecomplete.set(0)
+        self.blue1parkendgamepartial.set(0)
+        self.blue2parkendgamepartial.set(0)
+        self.updatebluescore()
 
 class MainApplication(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
